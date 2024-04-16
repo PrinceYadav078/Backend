@@ -1,9 +1,13 @@
-var express = require('express');
-var router = express.Router();
+const mongoose = require("mongoose");
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+// connect to mongodb which is running on port 27017  and create database mydb
+mongoose.connect("mongodb://127.0.0.1:27017/mydb");  
+// 127.0.0.1=> localhost
 
-module.exports = router;
+const userSchema= mongoose.Schema({
+  username:String,
+  name:String,
+  age:Number
+})
+
+module.exports=mongoose.model("Users", userSchema)
